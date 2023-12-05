@@ -1,7 +1,8 @@
-import { model, Schema, InferSchemaType } from "mongoose";
+const mongoose = require('mongoose');
 
 
-const clientDetailsSchema=new Schema(
+
+const clientDetailsSchema=new mongoose.Schema(
     {
         areasOfInterest: {
             type: [String],
@@ -33,6 +34,6 @@ const clientDetailsSchema=new Schema(
 )
 
 
-const Client=model("Client",clientDetailsSchema);
+const Client=mongoose.model("Client",clientDetailsSchema);
 
-export default Client;
+module.exports=Client;

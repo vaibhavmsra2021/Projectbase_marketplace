@@ -1,8 +1,7 @@
-import { model, Schema, Document, Types } from 'mongoose';
+const mongoose = require('mongoose');
 
 
-
-const projectSchema = new Schema(
+const projectSchema = new mongoose.Schema(
     {
         title: {
             type: String,
@@ -17,7 +16,7 @@ const projectSchema = new Schema(
             maxLength: 50,
         },
         companyId: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
         },
@@ -56,7 +55,7 @@ const projectSchema = new Schema(
         talents: {
             type: [
                 {
-                    type: Schema.Types.ObjectId,
+                    type: mongoose.Schema.Types.ObjectId,
                     ref: 'User',
                 },
             ],
@@ -66,6 +65,6 @@ const projectSchema = new Schema(
     { timestamps: true }
 );
 
-const Project = model('Project', projectSchema);
+const Project = mongoose.model('Project', projectSchema);
 
-export default Project;
+module.exports=Project;

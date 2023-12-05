@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import User from "../models/User";
-import Project from "../models/Projects";
+const User= require( "../models/User");
+const Project = require("../models/Projects");
+const { mod } = require("@tensorflow/tfjs");
 
-export const saveProject = async (req, res) => {
+const saveProject = async (req, res) => {
     try {
         const {
             title,
@@ -41,3 +41,10 @@ export const saveProject = async (req, res) => {
         res.status(500).json({ message: (err).message });
     }
 }
+
+const Welcome=(req,res)=>{
+    res.send('Welcome! You are in the secret  save details route in controllers.');
+}
+
+module.exports={saveProject
+,Welcome};

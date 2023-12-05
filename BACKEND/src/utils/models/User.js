@@ -1,6 +1,6 @@
-import { model, Schema, InferSchemaType } from "mongoose";
+const mongoose = require('mongoose');
 
-const UserSchema = new Schema(
+const UserSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -38,13 +38,13 @@ const UserSchema = new Schema(
             default: "talent",
         },
         roleId: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             default: null,
         },
     },
     { timestamps: true }
 );
 
-const User=model('User',UserSchema);
+const User=mongoose.model('User',UserSchema);
 
-export default User;
+module.exports=User;

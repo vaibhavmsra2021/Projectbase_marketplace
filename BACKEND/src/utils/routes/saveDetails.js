@@ -1,9 +1,16 @@
-import  express  from "express";
+const express  =require( "express");
 
-import { saveProject } from "../controllers/saveDetails";
+const {saveProject,Welcome}=require("../controllers/saveDetails");
 
-const router=express.router();
 
-router.post("saveProject",saveProject);
 
-export default router;
+const router=express.Router();
+
+router.post('/',Welcome);
+
+
+
+
+router.post("/saveProject",saveProject);
+
+module.exports=router;
