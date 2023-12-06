@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const useRouterGetDetails = require("./src/utils/routes/getDetails");
-
 const useRouterSaveDetails = require("./src/utils/routes/saveDetails");
 
 const app = express();
@@ -38,6 +37,7 @@ app.use(useRouterSaveDetails);
 mongoose
   .connect(
     "mongodb+srv://prateek:ARub4LN122y0sxmC@cluster0.hg316ou.mongodb.net/INTER-IIT-TRUMIO?retryWrites=true&w=majority"
+    // MONGO_URL
   )
   .then(() => {
     app.listen(PORT, () => {

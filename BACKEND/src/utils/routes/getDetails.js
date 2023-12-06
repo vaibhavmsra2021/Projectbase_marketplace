@@ -10,6 +10,7 @@ const {
   signup,
   passwordHash,
   sign_token,
+  signin,
 } = require("../controllers/UsersDetails");
 
 const router = express.Router();
@@ -24,5 +25,6 @@ router.get("/issuedProject", issuedProject);
 
 router.get("/appliedProject", appliedProject);
 router.post("/signup", passwordHash, sign_token, signup);
+router.get("/signin", signin);
 
 module.exports = router;
