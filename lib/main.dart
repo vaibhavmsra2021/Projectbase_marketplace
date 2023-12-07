@@ -12,6 +12,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Trumio',
+      // theme: ThemeData(
+      //   colorScheme:
+      //       ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 88, 162, 163)),
+      // ),
       home: SplashScreen(),
     );
   }

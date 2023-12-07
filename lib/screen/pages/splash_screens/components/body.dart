@@ -37,7 +37,7 @@ class _BodyState extends State<Body> {
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white
+          color: Color.fromARGB(255, 241, 250, 255),
         ),
 
         width: double.infinity,
@@ -45,15 +45,10 @@ class _BodyState extends State<Body> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: SvgPicture.asset(
-                "assets/Logo.svg",
-                width: 30,
-                height: 30,
-              ),
+            Container(
+              child: Image(
+                      image: AssetImage("assets/trumioLogo.png")),
             ),
-
 
             Expanded(
               flex: 3,
@@ -188,7 +183,7 @@ class _BodyState extends State<Body> {
         color: currentPage == index ? Colors.grey[800] : Colors.white,
 
         border: Border.all(
-          color: /*currentPage == index ? Colors.grey[800] : */Colors.black ,
+          color: (currentPage == index ? Colors.grey[800] : Colors.black)! ,
 
         ),
         borderRadius: BorderRadius.circular(10),//Border.all

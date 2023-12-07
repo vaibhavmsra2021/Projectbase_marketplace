@@ -47,19 +47,19 @@ class _MobileScreenState extends State<MobileScreen> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.userFriends,),
-                  label: 'My network',
+                  label: 'MarketPlace',
                 ),
                 BottomNavigationBarItem(
                     icon: Icon(FontAwesomeIcons.plusCircle,),
-                    label: 'Post'
+                    label: 'UpSkilling'
                 ),
                 BottomNavigationBarItem(
                     icon: Icon(FontAwesomeIcons.solidBell,),
-                    label: 'Notifications'
+                    label: 'Projects'
                 ),
                 BottomNavigationBarItem(
                     icon: Icon(FontAwesomeIcons.briefcase,),
-                    label: 'Jobs'
+                    label: 'MyTeam'
                 )
               ],
             ),
