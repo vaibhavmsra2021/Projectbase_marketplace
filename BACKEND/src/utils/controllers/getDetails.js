@@ -61,12 +61,14 @@ const appliedProject = async (req, res) => {
 
 const getRecomendedProjects = async (req, res) => {
     try {
-        // const user = await User.findById(req?.user?.id);
-        console.log(req.body.skills);
+        const user = await User.findById(req?.user?.id);
+        if(!user){
+            res.status(404).json({message:"Invalid User"});
+
+        }
+        else{
         try {
             const qurl = 'http://127.0.0.1:5000/get?msg=' + req.body.skills;
-
-            console.log(qurl);
             const pythonApiResponse = await axios.get(qurl);
 
             res.json(pythonApiResponse.data);
@@ -74,6 +76,7 @@ const getRecomendedProjects = async (req, res) => {
             console.error(error);
             res.status(500).send('Internal Server Error');
         }
+    }
 
     } catch (err) {
         res.status(500).json({ message: (err).message })

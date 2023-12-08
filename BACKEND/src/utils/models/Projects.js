@@ -3,56 +3,56 @@ const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema(
     {
-        title: {
+        title:{
             type: String,
             required: true,
             minLength: 5,
             maxLength: 50,
         },
-        companyName: {
+        companyName:{
             type: String,
             required: true,
             minLength: 2,
             maxLength: 50,
         },
-        companyId: {
+        companyId:{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
         },
-        projectDescription: {
+        projectDescription:{
             type: String,
             required: true,
             minLength: 7,
             maxLength: 320,
         },
-        projectType: {
+        projectType:{
             type: String,
             required: true,
             enum: ['Learning', 'Paid'],
             default: 'Paid',
         },
-        areaRelated: {
+        areaRelated:{
             type: [String],
             required: true,
             minLength: 2,
             maxLength: 50,
         },
-        lastDateOfApplication: {
+        lastDateOfApplication:{
             type: Date,
             required: true,
         },
-        amount: {
+        amount:{
             type: Number,
             required: true,
             minLength: 1,
             maxLength: 50,
         },
-        submittedDate: {
+        submittedDate:{
             type: Number,
             required: true,
         },
-        talents: {
+        talents:{
             type: [
                 {
                     type: mongoose.Schema.Types.ObjectId,
