@@ -32,7 +32,7 @@ class _UpskillingState extends State<Upskilling> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return projectsDeets();
+                      return projectsDeets(title: "Web3");
                     }));
                   },
                   child: Card(
@@ -64,7 +64,7 @@ class _UpskillingState extends State<Upskilling> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return projectsDeets();
+                      return projectsDeets(title: "BlockChain");
                     }));
                   },
                   child: Card(
@@ -96,7 +96,7 @@ class _UpskillingState extends State<Upskilling> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return projectsDeets();
+                      return projectsDeets(title: "App Development",);
                     }));
                   },
                   child: Card(
@@ -128,7 +128,7 @@ class _UpskillingState extends State<Upskilling> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return projectsDeets();
+                      return projectsDeets(title: "Web Development",);
                     }));
                   },
                   child: Card(

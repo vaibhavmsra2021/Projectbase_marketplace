@@ -6,6 +6,8 @@ import 'package:trumio_v1/size_config.dart';
 import '../../../../constants.dart';
 
 class SignUp3 extends StatefulWidget {
+  const SignUp3({super.key, required this.clientside});
+  final bool clientside;
   @override
   State<SignUp3> createState() => _SignUp3State();
 }
@@ -125,7 +127,7 @@ class _SignUp3State extends State<SignUp3> {
                                       side: BorderSide(color: kPrimaryColor)))),
                       onPressed: () =>
                           Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => SignUp4(),
+                        builder: (BuildContext context) => SignUp4(clientside: widget.clientside),
                       )),
                       child: Text(
                         "Save and Continue",

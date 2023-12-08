@@ -7,6 +7,8 @@ import 'package:trumio_v1/size_config.dart';
 import '../../../../constants.dart';
 
 class SignUp2 extends StatefulWidget {
+  const SignUp2({super.key, required this.clientside});
+  final bool clientside;
   @override
   State<SignUp2> createState() => _SignUp2State();
 }
@@ -192,7 +194,7 @@ class _SignUp2State extends State<SignUp2> {
                         child: ElevatedButton(
                           onPressed: () =>
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp3(),
+                              builder: (BuildContext context) => SignUp3(clientside: widget.clientside),
                             )),
                           style: ElevatedButton.styleFrom(
                             fixedSize: Size(double.maxFinite, 62),

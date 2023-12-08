@@ -4,7 +4,8 @@ import 'package:trumio_v1/constants.dart';
 import 'package:trumio_v1/screen/pages/sign_up/sign_up7.dart';
 
 class SignUp6 extends StatefulWidget {
-  const SignUp6({super.key});
+  const SignUp6({super.key, required this.clientside});
+  final bool clientside;
 
   @override
   State<SignUp6> createState() => _SignUp6State();
@@ -12,6 +13,7 @@ class SignUp6 extends StatefulWidget {
 
 class _SignUp6State extends State<SignUp6> {
   final collegeName = TextEditingController();
+  var aoiIndex = "-1";
   final skill1 = TextEditingController();
   final skill2 = TextEditingController();
   final skill3 = TextEditingController();
@@ -27,28 +29,28 @@ class _SignUp6State extends State<SignUp6> {
           child: Column(
             children: [
               SizedBox(
-                  height: 20,
-                ),
+                height: 20,
+              ),
               Container(
-                  child: Image(image: AssetImage("assets/trumioLogo.png")),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Education 🧑‍🎓",
-                        style: TextStyle(color: Colors.black, fontSize: 30),
-                      ),
-                      SizedBox(height: 15),
-                      Container(
+                child: Image(image: AssetImage("assets/trumioLogo.png")),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Education 🧑‍🎓",
+                      style: TextStyle(color: Colors.black, fontSize: 30),
+                    ),
+                    SizedBox(height: 15),
+                    Container(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 5),
                         child: TextField(
                           controller: collegeName,
                           decoration: InputDecoration(
@@ -65,35 +67,72 @@ class _SignUp6State extends State<SignUp6> {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Padding(
+                    StreamBuilder(
+                        stream: null,
+                        builder: ((context, snapshot) {
+                          if (widget.clientside) {
+                            return Column(
+                              children: [
+                                Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: DropdownButtonFormField(
-                          value: degreeIndex,
+                          value: aoiIndex,
                           items: [
                             DropdownMenuItem(
-                                child: Text("Select Degree"), value: "-1"),
+                                child: Text("Area of Interest"), value: "-1"),
                             DropdownMenuItem(
-                                child: Text("Btech"), value: "1"),
+                                child: Text("App Development"), value: "1"),
                             DropdownMenuItem(
-                                child: Text("Mtech"), value: "2"),
+                                child: Text("Web Development"), value: "2"),
                             DropdownMenuItem(
-                                child: Text("BSC"), value: "3"),
+                                child: Text("BlockChain"), value: "3"),
                             DropdownMenuItem(
-                                child: Text("BA"), value: "4"),
+                                child: Text("Internet of Things"), value: "4"),
                           ],
                           onChanged: (v) {},
                         ),
                       ),
                       SizedBox(height: 50),
-                      Text(
-                        "Skills 🎖️",
-                        style: TextStyle(color: Colors.black, fontSize: 30),
-                      ),
-                      SizedBox(height: 15),
-                      Container(
+                              ],
+                            );
+                          } else {
+                            return Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: DropdownButtonFormField(
+                                    value: degreeIndex,
+                                    items: [
+                                      DropdownMenuItem(
+                                          child: Text("Select Degree"),
+                                          value: "-1"),
+                                      DropdownMenuItem(
+                                          child: Text("Btech"), value: "1"),
+                                      DropdownMenuItem(
+                                          child: Text("Mtech"), value: "2"),
+                                      DropdownMenuItem(
+                                          child: Text("BSC"), value: "3"),
+                                      DropdownMenuItem(
+                                          child: Text("BA"), value: "4"),
+                                    ],
+                                    onChanged: (v) {},
+                                  ),
+                                ),
+                                SizedBox(height: 50)
+                              ],
+                            );
+                          }
+                        })),
+                    Text(
+                      "Skills 🎖️",
+                      style: TextStyle(color: Colors.black, fontSize: 30),
+                    ),
+                    SizedBox(height: 15),
+                    Container(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 5),
                         child: TextField(
                           controller: skill1,
                           decoration: InputDecoration(
@@ -112,8 +151,8 @@ class _SignUp6State extends State<SignUp6> {
                     SizedBox(height: 15),
                     Container(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 5),
                         child: TextField(
                           controller: skill2,
                           decoration: InputDecoration(
@@ -132,8 +171,8 @@ class _SignUp6State extends State<SignUp6> {
                     SizedBox(height: 15),
                     Container(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 5),
                         child: TextField(
                           controller: skill3,
                           decoration: InputDecoration(
@@ -152,8 +191,8 @@ class _SignUp6State extends State<SignUp6> {
                     SizedBox(height: 15),
                     Container(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 5),
                         child: TextField(
                           controller: skill4,
                           decoration: InputDecoration(
@@ -172,8 +211,8 @@ class _SignUp6State extends State<SignUp6> {
                     SizedBox(height: 15),
                     Container(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 5),
                         child: TextField(
                           controller: skill5,
                           decoration: InputDecoration(
@@ -190,80 +229,92 @@ class _SignUp6State extends State<SignUp6> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15, ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 15,
+                      ),
                       child: Row(
-                          children: [
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(kPrimaryColor),
-                                  shape:
-                                      MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(25.0),
-                                              side: BorderSide(color: kPrimaryColor)))),
-                              onPressed: () =>
-                                  Navigator.of(context).pop(MaterialPageRoute(
-                                builder: (BuildContext context) => SignUp6(),
-                              )),
-                              child: Text(
-                                "Back",
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  color: Colors.white,
-                                ),
+                        children: [
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        kPrimaryColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        side:
+                                            BorderSide(color: kPrimaryColor)))),
+                            onPressed: () =>
+                                Navigator.of(context).pop(MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  SignUp6(clientside: widget.clientside),
+                            )),
+                            child: Text(
+                              "Back",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.white,
                               ),
                             ),
-                            Expanded(child: SizedBox()),
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(kPrimaryColor),
-                                  shape:
-                                      MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(25.0),
-                                              side: BorderSide(color: kPrimaryColor)))),
-                              onPressed: () =>
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => SignUp7(),
-                              )),
-                              child: Text(
-                                "Skip",
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  color: Colors.white,
-                                ),
+                          ),
+                          Expanded(child: SizedBox()),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        kPrimaryColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        side:
+                                            BorderSide(color: kPrimaryColor)))),
+                            onPressed: () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => SignUp7(clientside: widget.clientside),
+                            )),
+                            child: Text(
+                              "Skip",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.white,
                               ),
                             ),
-                            SizedBox(width: 10),
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<Color>(
-                                      kPrimaryColor),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(25.0),
-                                          side: BorderSide(color: kPrimaryColor)))),
-                              onPressed: () =>
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => SignUp7(),
-                              )),
-                              child: Text(
-                                "Save",
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  color: Colors.white,
-                                ),
+                          ),
+                          SizedBox(width: 10),
+                          ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        kPrimaryColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                        side:
+                                            BorderSide(color: kPrimaryColor)))),
+                            onPressed: () =>
+                                Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => SignUp7(clientside: widget.clientside),
+                            )),
+                            child: Text(
+                              "Save",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.white,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
                     )
-                    ],
-                  ),
-                )
+                  ],
+                ),
+              )
             ],
           ),
         ),

@@ -55,7 +55,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         onPressed: () =>
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp2(),
+                              builder: (BuildContext context) => SignUp2(clientside: false),
                             )),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -86,7 +86,10 @@ class _SignUpState extends State<SignUp> {
                             borderRadius: BorderRadius.circular(11),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () =>
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => SignUp2(clientside: true),
+                            )),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           child: Column(

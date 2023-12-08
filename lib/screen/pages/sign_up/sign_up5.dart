@@ -4,7 +4,8 @@ import 'package:trumio_v1/screen/pages/sign_up/sign_up4.dart';
 import 'package:trumio_v1/screen/pages/sign_up/sign_up6.dart';
 
 class SignUp5 extends StatefulWidget {
-  const SignUp5({super.key});
+  const SignUp5({super.key, required this.clientside});
+  final bool clientside;
 
   @override
   State<SignUp5> createState() => _SignUp5State();
@@ -179,7 +180,7 @@ class _SignUp5State extends State<SignUp5> {
                                             side: BorderSide(color: kPrimaryColor)))),
                             onPressed: () =>
                                 Navigator.of(context).pop(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp5(),
+                              builder: (BuildContext context) => SignUp5(clientside: widget.clientside,),
                             )),
                             child: Text(
                               "Back",
@@ -201,7 +202,7 @@ class _SignUp5State extends State<SignUp5> {
                                             side: BorderSide(color: kPrimaryColor)))),
                             onPressed: () =>
                                 Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp6(),
+                              builder: (BuildContext context) => SignUp6(clientside: widget.clientside),
                             )),
                             child: Text(
                               "Skip",
@@ -223,7 +224,7 @@ class _SignUp5State extends State<SignUp5> {
                                         side: BorderSide(color: kPrimaryColor)))),
                             onPressed: () =>
                                 Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp6(),
+                              builder: (BuildContext context) => SignUp6(clientside: widget.clientside),
                             )),
                             child: Text(
                               "Save",

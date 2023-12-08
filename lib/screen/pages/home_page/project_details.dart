@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'project_page.dart';
 
 class projectsDeets extends StatefulWidget {
-  const projectsDeets({super.key});
-
+  const projectsDeets({super.key, required this.title});
+  final String title;
   @override
   State<projectsDeets> createState() => _projectsDeetsState();
 }
@@ -20,7 +20,7 @@ class _projectsDeetsState extends State<projectsDeets> {
         child: Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
-        title: Center(child: Text("Web3")),
+        title: Center(child: Text(widget.title)),
       ),
       body: SingleChildScrollView(
         child: Container(
