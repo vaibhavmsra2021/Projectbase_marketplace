@@ -63,14 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.black12,
               child: Column(
                 children: [
-                  _showAppNavBar
-                      ? CustomAppBar(
-                    sizingInformation: sizingInformation,
-                  )
-                      : Container(
-                    height: 0.0,
-                    width: 0.0,
-                  ),
                   _listPostWidget(sizingInformation),
                 ],
               ),
