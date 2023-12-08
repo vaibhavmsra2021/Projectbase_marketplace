@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trumio_v1/screen/pages/home_page/project_details.dart';
 
 class Upskilling extends StatefulWidget {
   const Upskilling({super.key});
@@ -31,7 +32,7 @@ class _UpskillingState extends State<Upskilling> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return Upskilling();
+                      return projectsDeets();
                     }));
                   },
                   child: Card(
@@ -48,7 +49,7 @@ class _UpskillingState extends State<Upskilling> {
                               alignment: Alignment.topCenter)),
                       child: const Center(
                           child: Text(
-                        "Mobile & other Electronics",
+                        "Web3",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 35,
@@ -63,7 +64,7 @@ class _UpskillingState extends State<Upskilling> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return Upskilling();
+                      return projectsDeets();
                     }));
                   },
                   child: Card(
@@ -95,7 +96,7 @@ class _UpskillingState extends State<Upskilling> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return Upskilling();
+                      return projectsDeets();
                     }));
                   },
                   child: Card(
@@ -127,7 +128,7 @@ class _UpskillingState extends State<Upskilling> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return Upskilling();
+                      return projectsDeets();
                     }));
                   },
                   child: Card(
