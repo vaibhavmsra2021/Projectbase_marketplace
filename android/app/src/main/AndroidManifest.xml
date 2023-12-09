@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="linked_in_clone_v1"
+        android:label="Trumio"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

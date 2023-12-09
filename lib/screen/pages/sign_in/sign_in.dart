@@ -120,9 +120,9 @@ class _SignInState extends State<SignIn> {
                                       borderRadius: BorderRadius.circular(25.0),
                                       side: BorderSide(color: kPrimaryColor)))),
                       onPressed: () =>
-                          Navigator.of(context).push(MaterialPageRoute(
+                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
                         builder: (BuildContext context) => MobileScreen(),
-                      )),
+                      ), (route) => false),
                       child: Text(
                         "Continue",
                         style: TextStyle(
