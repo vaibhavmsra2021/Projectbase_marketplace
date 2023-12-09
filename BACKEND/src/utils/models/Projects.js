@@ -32,7 +32,7 @@ const projectSchema = new mongoose.Schema(
             enum: ['Learning', 'Paid'],
             default: 'Paid',
         },
-        areaRelated:{
+        skills:{
             type: [String],
             required: true,
             minLength: 2,
@@ -48,8 +48,15 @@ const projectSchema = new mongoose.Schema(
             minLength: 1,
             maxLength: 50,
         },
+        projectDifficulty:{
+            type:String,
+            required:false,
+            minLength:3,
+            maxLength:56,
+
+        },
         submittedDate:{
-            type: Number,
+            type: Date,
             required: true,
         },
         talents:{
