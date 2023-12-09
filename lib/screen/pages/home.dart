@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trumio_v1/screen/pages/home_page/home_page.dart';
@@ -14,6 +16,8 @@ class MobileScreen extends StatefulWidget {
 }
 
 class _MobileScreenState extends State<MobileScreen> {
+  TextEditingController _searchController = TextEditingController();
+  Queue<String> searchHistory = Queue<String>();
   int _currentIndex = 0;
   final List<Widget> _children = [
     DashBoardPage(),
@@ -23,6 +27,18 @@ class _MobileScreenState extends State<MobileScreen> {
     MyTeam(),
     Clubs(),
   ];
+
+  void performSearch() {
+    String searchText = _searchController.text.trim();
+    if (searchText.isNotEmpty) {
+      searchHistory.addFirst(searchText);
+      if (searchHistory.length > 10) {
+        searchHistory.removeLast();
+      }
+      print('Search History: ${searchHistory.toList()}');
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +51,7 @@ class _MobileScreenState extends State<MobileScreen> {
           child: Container(
             height: 55,
             child: TextField(
+              controller: _searchController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(11),
@@ -43,11 +60,13 @@ class _MobileScreenState extends State<MobileScreen> {
                 ),
                 prefixIcon: IconButton(
                   icon: Icon(Icons.search,),
-                  onPressed: () {},
+                  onPressed: () {
+                    performSearch();
+                  },
                 ),
                 hintText: "Search In Trumio",
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.camera_alt_outlined,),
+                  icon: Icon(Icons.mic,),
                   onPressed: () {},
                 ),
               ),
@@ -105,45 +124,6 @@ class _MobileScreenState extends State<MobileScreen> {
             });
           },
         ),
-        // bottomNavigationBar: BottomNavigationBar(
-        //   unselectedItemColor: Colors.grey,
-        //   selectedItemColor: Colors.black,
-        //   currentIndex: _currentIndex,
-        //   items: const [
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         FontAwesomeIcons.home,
-        //       ),
-        //       label: 'Home',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         FontAwesomeIcons.userFriends,
-        //       ),
-        //       label: 'MarketPlace',
-        //     ),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(
-        //           FontAwesomeIcons.plusCircle,
-        //         ),
-        //         label: 'UpSkilling'),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(
-        //           FontAwesomeIcons.solidBell,
-        //         ),
-        //         label: 'Projects'),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(
-        //           FontAwesomeIcons.briefcase,
-        //         ),
-        //         label: 'MyTeam')
-        //   ],
-        //   onTap: (pageIndex) {
-        //     setState(() {
-        //       _currentIndex = pageIndex;
-        //     });
-        //   },
-        // ),
       ),
     );
   }
