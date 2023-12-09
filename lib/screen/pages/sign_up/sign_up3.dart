@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:trumio_v1/screen/pages/home.dart';
 import 'package:trumio_v1/screen/pages/sign_up/sign_up4.dart';
 import 'package:trumio_v1/size_config.dart';
 import '../../../../constants.dart';

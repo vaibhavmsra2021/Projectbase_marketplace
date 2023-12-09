@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:trumio_v1/constants.dart';
-import 'package:trumio_v1/screen/pages/sign_up/sign_up4.dart';
 import 'package:trumio_v1/screen/pages/sign_up/sign_up6.dart';
 
 class SignUp5 extends StatefulWidget {

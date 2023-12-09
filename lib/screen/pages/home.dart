@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:trumio_v1/screen/pages/home_page/home_page.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:trumio_v1/screen/pages/home_page/upskilling_page.dart';
+
+import 'home_page/clubs_page.dart';
+import 'home_page/marketplace_page.dart';
+import 'home_page/myTeam_page.dart';
+import 'home_page/projects.dart';
 
 class MobileScreen extends StatefulWidget {
   @override
@@ -12,11 +16,12 @@ class MobileScreen extends StatefulWidget {
 class _MobileScreenState extends State<MobileScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    HomeScreen(),
-    HomeScreen(),
+    DashBoardPage(),
+    marketPlace(),
     Upskilling(),
-    HomeScreen(),
-    HomeScreen(),
+    Projects(),
+    MyTeam(),
+    Clubs(),
   ];
 
   @override
@@ -40,7 +45,7 @@ class _MobileScreenState extends State<MobileScreen> {
                   icon: Icon(Icons.search,),
                   onPressed: () {},
                 ),
-                hintText: "Search Products",
+                hintText: "Search In Trumio",
                 suffixIcon: IconButton(
                   icon: Icon(Icons.camera_alt_outlined,),
                   onPressed: () {},
@@ -57,36 +62,42 @@ class _MobileScreenState extends State<MobileScreen> {
         body: _children[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.grey,
-          selectedItemColor: Colors.black,
+          selectedItemColor: Colors.blueAccent,
+          selectedFontSize: 15,
           currentIndex: _currentIndex,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
-                FontAwesomeIcons.home,
+                Icons.dashboard,
               ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                FontAwesomeIcons.userFriends,
+                Icons.people_alt,
               ),
               label: 'MarketPlace',
             ),
             BottomNavigationBarItem(
                 icon: Icon(
-                  FontAwesomeIcons.plusCircle,
+                  Icons.self_improvement,
                 ),
                 label: 'UpSkilling'),
             BottomNavigationBarItem(
                 icon: Icon(
-                  FontAwesomeIcons.solidBell,
+                  Icons.work,
                 ),
                 label: 'Projects'),
             BottomNavigationBarItem(
                 icon: Icon(
-                  FontAwesomeIcons.briefcase,
+                  Icons.people_rounded,
                 ),
-                label: 'MyTeam')
+                label: 'My Teams'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.people_alt_outlined,
+                ),
+                label: 'Clubs')
           ],
           onTap: (pageIndex) {
             setState(() {
@@ -94,6 +105,45 @@ class _MobileScreenState extends State<MobileScreen> {
             });
           },
         ),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   unselectedItemColor: Colors.grey,
+        //   selectedItemColor: Colors.black,
+        //   currentIndex: _currentIndex,
+        //   items: const [
+        //     BottomNavigationBarItem(
+        //       icon: Icon(
+        //         FontAwesomeIcons.home,
+        //       ),
+        //       label: 'Home',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(
+        //         FontAwesomeIcons.userFriends,
+        //       ),
+        //       label: 'MarketPlace',
+        //     ),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           FontAwesomeIcons.plusCircle,
+        //         ),
+        //         label: 'UpSkilling'),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           FontAwesomeIcons.solidBell,
+        //         ),
+        //         label: 'Projects'),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(
+        //           FontAwesomeIcons.briefcase,
+        //         ),
+        //         label: 'MyTeam')
+        //   ],
+        //   onTap: (pageIndex) {
+        //     setState(() {
+        //       _currentIndex = pageIndex;
+        //     });
+        //   },
+        // ),
       ),
     );
   }

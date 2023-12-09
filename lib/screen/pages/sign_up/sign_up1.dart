@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:trumio_v1/constants.dart';
 import 'package:trumio_v1/screen/pages/sign_in/sign_in.dart';
 import 'package:trumio_v1/screen/pages/sign_up/sign_up2.dart';
-import 'package:trumio_v1/size_config.dart';
 
 class SignUp extends StatefulWidget {
   @override

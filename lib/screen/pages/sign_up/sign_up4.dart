@@ -1,8 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:trumio_v1/constants.dart';
-
-import 'sign_up3.dart';
 import 'sign_up5.dart';
 
 class SignUp4 extends StatefulWidget {
@@ -181,7 +179,7 @@ class _SignUp4State extends State<SignUp4> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10),
                                     child: Text(
-                                      "Professional Intoduction",
+                                      "Professional Introduction",
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 21),
                                     ),
@@ -210,7 +208,7 @@ class _SignUp4State extends State<SignUp4> {
                                   ),
                                   SizedBox(height: 15),
                                   ElevatedButton(
-                                    child: Text("Uplaod your Resume"),
+                                    child: Text("Upload your Resume"),
                                     onPressed: () async {
                                       final file =
                                           await FilePicker.platform.pickFiles();
