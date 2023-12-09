@@ -6,7 +6,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 class CustomAppBar extends StatelessWidget {
   final SizingInformation sizingInformation;
 
-  const CustomAppBar({required Key key, required this.sizingInformation}) : super(key: key);
+  const CustomAppBar({required this.sizingInformation}) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +42,11 @@ class CustomAppBar extends StatelessWidget {
           Container(
             height: 35,
             width: sizingInformation.screenSize.width/1.40,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(4)),
               color: Colors.white70
             ),
-            child: TextField(
+            child: const TextField(
               decoration: InputDecoration(
                 hintText: "Search",
                 border: InputBorder.none,
@@ -60,7 +60,7 @@ class CustomAppBar extends StatelessWidget {
             height: 30,
             width: 30,
             child:
-              Icon(FontAwesomeIcons.facebookMessenger)
+              const Icon(FontAwesomeIcons.facebookMessenger)
 
           ),
         ],

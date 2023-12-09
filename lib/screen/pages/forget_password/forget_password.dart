@@ -70,7 +70,7 @@ class ForgetPassword extends StatelessWidget {
                           ),
                           onPressed: () =>
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => SignUp3(),
+                                builder: (BuildContext context) => SignUp3(clientside: false),
                               )),
                           child: Text(
                             "Reset password",

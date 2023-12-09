@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:trumio/constants.dart';
-
 import 'package:trumio/screen/pages/sign_in/sign_in.dart';
 import 'package:trumio/screen/pages/sign_up/sign_up1.dart';
 import 'package:trumio/size_config.dart';
@@ -18,7 +17,6 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int currentPage = 0;
-  String image="image";
   List<Map<String, String>> splashData = [
     {
       "text": "Find and land your next job",
@@ -39,7 +37,7 @@ class _BodyState extends State<Body> {
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white
+          color: Color.fromARGB(255, 241, 250, 255),
         ),
 
         width: double.infinity,
@@ -47,15 +45,10 @@ class _BodyState extends State<Body> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: SvgPicture.asset(
-                "assets/Logo.svg",
-                width: 30,
-                height: 30,
-              ),
+            Container(
+              child: Image(
+                      image: AssetImage("assets/trumioLogo.png")),
             ),
-
 
             Expanded(
               flex: 3,
@@ -67,8 +60,8 @@ class _BodyState extends State<Body> {
                 },
                 itemCount: splashData.length,
                 itemBuilder: (context, index) => SplashContent(
-                  image: splashData[index][image].toString(),
-                  text: splashData[index]['text'].toString(), key: new Key(""),
+                  image: splashData[index]["image"],
+                  text: splashData[index]['text'],
                 ),
               ),
             ),
@@ -190,7 +183,7 @@ class _BodyState extends State<Body> {
         color: currentPage == index ? Colors.grey[800] : Colors.white,
 
         border: Border.all(
-          color: (currentPage == index ? Colors.grey[800] : Colors.black)!,
+          color: (currentPage == index ? Colors.grey[800] : Colors.black)! ,
 
         ),
         borderRadius: BorderRadius.circular(10),//Border.all

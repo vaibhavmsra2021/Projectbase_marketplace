@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:trumio/screen/pages/home_page/clubs.dart';
 import 'package:trumio/screen/pages/home_page/home_page.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
+import 'package:trumio/screen/pages/home_page/market_place.dart';
+import 'package:trumio/screen/pages/home_page/my_team.dart';
+import 'package:trumio/screen/pages/home_page/upskilling_page.dart';
+import 'package:trumio/screen/pages/home_page/projects.dart';
 class MobileScreen extends StatefulWidget {
   @override
   _MobileScreenState createState() => _MobileScreenState();
@@ -11,76 +15,71 @@ class MobileScreen extends StatefulWidget {
 class _MobileScreenState extends State<MobileScreen> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
-
-
+    MyHomePage(),
+    marketPlace(),
+    Upskilling(),
+    Projects(),
+    MyTeam(),
+    Clubs(),
   ];
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (BuildContext context, SizingInformation sizingInformation) {
-        return SafeArea(
-          child: Scaffold(
-            bottomNavigationBar:
+    return SafeArea(
+      child: Scaffold(
 
+        appBar: AppBar(
+        toolbarHeight: 60,
+        backgroundColor: Colors.blueAccent,
+        title: Text("Trumio", style:TextStyle(color: Colors.white, fontSize: 17)),
 
-          BottomNavigationBar(
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.black,
-
-              onTap: onTabTapped, // new
-              currentIndex: _currentIndex, // new
-              items: [
-                new BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.home,),
-                  label: Text('Home').toString(),
-
-
-                ),
-                new BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.userFriends,),
-                  label: Text('My network').toString(),
-                ),
-                new BottomNavigationBarItem(
-                    icon: Icon(FontAwesomeIcons.plusCircle,),
-                    label: Text('Post').toString()
-                ),
-                new BottomNavigationBarItem(
-                    icon: Icon(FontAwesomeIcons.solidBell,),
-                    label: Text('Notifications').toString()
-                ),
-                new BottomNavigationBarItem(
-                    icon: Icon(FontAwesomeIcons.briefcase,),
-
-                    label: Text('Jobs').toString()
-                )
-              ],
+      ),
+        body: _children[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Colors.black,
+          currentIndex: _currentIndex,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.dashboard,
+              ),
+              label: 'Home',
             ),
-
-
-
-
-            body: _children[_currentIndex],
-
-
-          ),
-        );
-      },
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.people_alt,
+              ),
+              label: 'MarketPlace',
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.self_improvement,
+                ),
+                label: 'UpSkilling'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.work,
+                ),
+                label: 'Projects'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.people_rounded,
+                ),
+                label: 'My Teams'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.people_alt_outlined,
+                ),
+                label: 'Clubs')
+          ],
+          onTap: (pageIndex) {
+            setState(() {
+              _currentIndex = pageIndex;
+            });
+          },
+        ),
+      ),
     );
   }
-
-
-
-
 }
-

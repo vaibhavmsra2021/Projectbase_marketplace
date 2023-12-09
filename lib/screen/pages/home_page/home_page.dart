@@ -1,261 +1,284 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:trumio/constants.dart';
-import 'package:trumio/repository/data.dart';
-import 'package:trumio/screen/pages/widget/Custom_Buttons.dart';
-import 'package:trumio/screen/pages/widget/custom_appBar.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-class HomeScreen extends StatefulWidget {
+
+class MyHomePage extends StatefulWidget{
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  DashboardPage createState() => DashboardPage();
+}
+// class homePage extends State<MyHomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: DashboardPage(),
+//     );
+//   }
+// }
+
+class DashboardPage extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Dashboard", style:TextStyle(color: Colors.black, fontSize: 17)),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              // Implement create club functionality
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.people),
+            onPressed: () {
+              // Implement create team functionality
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.group_add),
+            onPressed: () {
+              // Implement join team functionality
+            },
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(10.0),
+          children: [
+            Card(
+              child: Column(
+                children: [
+                  GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    children: [
+                      buildEarningsTile('Total (Month)', '\$5000'),
+                      buildEarningsTile('Completed (Month)', '\$3000'),
+                      buildEarningsTile('Total (Year)', '\$25000'),
+                      buildEarningsTile('Completed (Year)', '\$18000'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 10.0),
+            ExpandableCard(
+              title: 'Rewards',
+              content: Column(
+                children: [
+                  GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 1,
+                    children: [
+                      buildRewardTile('Reward 1', '\$100'),
+                      buildRewardTile('Reward 2', '\$50'),
+                    ],
+                  ),
+                  SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                        // Profile icon
+                        // Add your profile icon logic here
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Earnings'),
+                          Text('\$5000'),
+                        ],
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Implement earn more functionality
+                        },
+                        child: Text('Earn More'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 10.0),
+            ExpandableCard(title: 'Projects', content: buildProjectsContent()),
+            SizedBox(height: 10.0),
+            ExpandableCard(title: 'Teams', content: buildTeamsContent()),
+            SizedBox(height: 10.0),
+            AvailabilityCard(),
+          ],
+        ),
+
+    );
+  }
+
+  Widget buildRewardTile(String title, String amount) {
+    return Card(
+      child: Column(
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 8.0),
+          Text(amount),
+        ],
+      ),
+    );
+  }
+
+  Widget buildEarningsTile(String title, String amount) {
+    return Card(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 6.0),
+          Text(amount),
+        ],
+      ),
+    );
+  }
+
+  Widget buildRewardsContent() {
+    // Build the content for the "Rewards" card
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Reward 1'),
+            Text('\$100'),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Reward 2'),
+            Text('\$50'),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CircleAvatar(
+              // Profile icon
+              // Add your profile icon logic here
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Earnings'),
+                Text('\$5000'),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Implement earn more functionality
+              },
+              child: Text('Earn More'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildProjectsContent() {
+    // Build the content for the "Projects" card
+    return Column(
+      children: [
+        ExpandableList(title: 'Active Projects', items: ['Project 1', 'Project 2']),
+        ExpandableList(title: 'Upcoming Projects', items: ['Project 3', 'Project 4']),
+        ExpandableList(title: 'Recommended Projects', items: ['Project 5', 'Project 6']),
+        ExpandableList(title: 'Upcoming Payments', items: ['Payment 1', 'Payment 2']),
+      ],
+    );
+  }
+
+  Widget buildTeamsContent() {
+    // Build the content for the "Teams" card
+    return Column(
+      children: [
+        ExpandableList(title: 'My Teams', items: ['Team A', 'Team B']),
+        ExpandableList(title: 'Team Invites', items: ['Invite 1', 'Invite 2']),
+        ExpandableList(title: 'Recommended Teams', items: ['Team X', 'Team Y']),
+      ],
+    );
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class ExpandableCard extends StatefulWidget {
+  final String title;
+  final Widget content;
 
-
-
-  final _post = Data.postList;
-  bool _showAppNavBar = true;
-  late ScrollController _scrollController;
-  bool _isScrollDown = false;
+  ExpandableCard({required this.title, required this.content});
 
   @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-    _initialScroll();
-  }
+  _ExpandableCardState createState() => _ExpandableCardState();
+}
 
-  void _initialScroll() async {
-    _scrollController.addListener(() {
-      if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        if (!_isScrollDown) {
-          _isScrollDown = true;
-          _hideAppNavBar();
-        }
-      }
-      if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        if (_isScrollDown) {
-          _isScrollDown = false;
-          _showAppNvBar();
-          setState(() {});
-        }
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
+class _ExpandableCardState extends State<ExpandableCard> {
+  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
-    return
-      ResponsiveBuilder(
-          builder: (BuildContext context, SizingInformation sizingInformation) {
-            return Container(
-              color: Colors.black12,
-              child: Column(
-                children: [
-                  _showAppNavBar
-                      ? CustomAppBar(
-                    sizingInformation: sizingInformation, key: new Key(""),
-                  )
-                      : Container(
-                    height: 0.0,
-                    width: 0.0,
-                  ),
-                  _listPostWidget(sizingInformation),
-                ],
-              ),
-            );
-          });
-  }
-
-  Widget _listPostWidget(SizingInformation sizingInformation) {
-    return Expanded(
-        child: MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
-          child: ListView.builder(
-            controller: _scrollController,
-            itemCount: _post.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                margin: EdgeInsets.only(bottom: 0.0, top: 8),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                        top: BorderSide(color: Colors.black54, width: 0.50),
-                        bottom: BorderSide(color: Colors.black54, width: 0.50))),
-                child: Column(
-                  children: [
-
-                    Row(
-                      children: [
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            // borderRadius: BorderRadius.all(Radius.circular(0)),
-                              image: DecorationImage(
-                                  image: AssetImage(_post[index].profileUrl)
-                              )
-
-                          ),
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _post[index].name,
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            Container(
-                              width: sizingInformation.screenSize.width / 1.34,
-                              child: Text(
-                                _post[index].headline,
-                                style:
-                                TextStyle(fontSize: 12, color: Colors.black54),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-
-                    SizedBox(height: 10,),
-
-                    Text(
-                      _post[index].description,
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    Text(
-                      _post[index].tags,
-                      style: TextStyle(color: kPrimaryColor),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      width: sizingInformation.screenSize.width,
-                      child: Image.asset(
-                        _post[index].image,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              Container(
-                                  width: 25,
-                                  height: 25,
-                                  child: Image.asset('assets/icons/like_icon.png')),
-                              Container(
-                                  width: 25,
-                                  height: 25,
-                                  child: Image.asset(
-                                      'assets/icons/celebrate_icon.png')),
-                              if (index == 0 || index == 4 || index == 6)
-                                Container(
-                                    width: 25,
-                                    height: 25,
-                                    child:
-                                    Image.asset('assets/icons/love_icon.png')),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                _post[index].likes,
-                                style: TextStyle(fontSize: 14),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: Row(
-                            children: [
-                              Text(_post[index].comments),
-                              Text(" comments")
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    Divider(
-                      thickness: 0.50,
-                      color: Colors.black26,
-                    ),
-                    _rowButton(),
-                  ],
-                ),
-              );
-            },
-          ),
-        ));
-  }
-
-  void _hideAppNavBar() {
-    setState(() {
-      _showAppNavBar = false;
-    });
-  }
-
-  void _showAppNvBar() {
-    setState(() {
-      _showAppNavBar = true;
-    });
-  }
-
-  Widget _rowButton() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Card(
+      child: Column(
         children: [
-          InkWell(
-            onTap: () {},
-            child: rowSingleButton(
-                color: Colors.black,
-                name: "Like",
-                iconImage: "assets/icons/like_icon_white.png",
-                isHover: false),
+          ListTile(
+            title: Text(widget.title),
+            trailing: IconButton(
+              icon: Icon(isExpanded ? Icons.expand_less : Icons.expand_more),
+              onPressed: () {
+                setState(() {
+                  isExpanded = !isExpanded;
+                });
+              },
+            ),
           ),
-          InkWell(
-            onTap: () {},
-            child: rowSingleButton(
-                color: Colors.black,
-                name: "Comment",
-                iconImage: "assets/icons/comment_icon.png",
-                isHover: false),
-          ),
-          InkWell(
-            onTap: () {},
-            child: rowSingleButton(
-                color: Colors.black,
-                name: "Share",
-                iconImage: "assets/icons/share_icon.png",
-                isHover: false),
-          ),
+          if (isExpanded) widget.content,
         ],
+      ),
+    );
+  }
+}
+
+class ExpandableList extends StatelessWidget {
+  final String title;
+  final List<String> items;
+
+  ExpandableList({required this.title, required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionTile(
+      title: Text(title),
+      children: [
+        for (String item in items)
+          ListTile(
+            title: Text(item),
+            // Add more details as needed
+          ),
+      ],
+    );
+  }
+}
+
+class AvailabilityCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text('Availability'),
+        trailing: IconButton(
+          icon: Icon(Icons.edit),
+          onPressed: () {
+            // Implement edit availability functionality
+          },
+        ),
+        // Add availability interface here
       ),
     );
   }
