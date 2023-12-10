@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.get("/", Welcome);
 
-router.get("/RecomendedProjects", getRecomendedProjects);
+router.post("/RecomendedProjects", getRecomendedProjects);
 
 router.get("/getAllProjects", getAllProjects);
 
