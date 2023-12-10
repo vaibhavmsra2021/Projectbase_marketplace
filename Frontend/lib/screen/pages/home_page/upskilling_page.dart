@@ -1,23 +1,54 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:trumio_v1/screen/pages/home_page/project_details.dart';
 import 'package:http/http.dart' as http;
+import 'package:trumio_v1/screen/pages/sign_up/sign_up6.dart';
 
 class Upskilling extends StatefulWidget {
-  const Upskilling({super.key});
+  Upskilling({super.key});
+  
 
   @override
   State<Upskilling> createState() => _UpskillingState();
 }
 
 class _UpskillingState extends State<Upskilling> {
+  var domainNames = SignUp6.myList;
 
-  var domainNames = [
-    "Web3",
-    "BlockChain",
-    "App Development",
-    "Web Development",
-    "Internet of Things"
-  ];
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
+  // Future<List> getUserInfo3(String skills) async {
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse("http://localhost:7000/RecomendedProjects"),
+  //       body: {"skills": "Html,Css,Javasript,React,Redux"},
+  //     );
+  //     if (response.statusCode == 200) {
+  //       print('Sign up successful from this page');
+  //       Map<String, dynamic> jsonResponse = json.decode(response.body);
+  //       return List<String>.from(jsonResponse['data']);
+  //     } else {
+  //       print('Sign up failed: ${response.statusCode}');
+  //       return List.empty();
+  //     }
+  //   } catch (error) {
+  //     print('Error during sign up: $error');
+  //     return List.empty();
+  //     // Handle error, e.g., show error message to the user
+  //   }
+  // }
+
+  // var domainNames = [
+  //   "Web3",
+  //   "BlockChain",
+  //   "App Development",
+  //   "Web Development",
+  //   "Internet of Things"
+  // ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(

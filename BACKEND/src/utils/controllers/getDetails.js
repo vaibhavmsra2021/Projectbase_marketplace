@@ -54,14 +54,14 @@ const getRecomendedProjects = async (req, res) => {
       console.log(qurl);
       const pythonApiResponse = await axios.get(qurl);
 
-      res.json(pythonApiResponse.data);
+      return res.json({data : pythonApiResponse.data});
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
     }
 
   } catch (err) {
-    res.status(500).json({ message: (err).message })
+    return res.status(500).json({ message: (err).message })
   }
 }
 

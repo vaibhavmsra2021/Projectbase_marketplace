@@ -7,16 +7,16 @@ import 'package:trumio_v1/screen/pages/sign_up/sign_up7.dart';
 import 'package:http/http.dart' as http;
 
 class SignUp6 extends StatefulWidget {
-  const SignUp6({super.key, required this.clientside});
+  SignUp6({super.key, required this.clientside});
   final bool clientside;
+  static List<String> myList = [];
 
   @override
   State<SignUp6> createState() => _SignUp6State();
 }
 
-late List recommendedProjects = [];
-
 class _SignUp6State extends State<SignUp6> {
+  List<String> recommendedProjects = SignUp6.myList;
   final collegeName = TextEditingController();
   var aoiIndex = "-1";
   final skill1 = TextEditingController();
@@ -25,19 +25,27 @@ class _SignUp6State extends State<SignUp6> {
   final skill4 = TextEditingController();
   final skill5 = TextEditingController();
   var degreeIndex = "-1";
+  final ip = "10.30.53.57";
 
-  Future<List> getUserInfo3(String skills) async {
+  Future<List<String>> getUserInfo3(String skills) async {
     try {
       final response = await http.post(
-        Uri.parse("http://localhost:7000/RecomendedProjects"),
-        body: {
-          "skills": "Html,Css,Javasript,React,Redux"
-        },
+        Uri.parse("http://${ip}:7000/RecomendedProjects"),
+        body: {"skills": skills},
       );
       if (response.statusCode == 200) {
         print('Sign up successful from this page');
-        Map<String, dynamic> jsonResponse = json.decode(response.body);
-        return List<String>.from(jsonResponse['data']);
+        // Map<String, dynamic> jsonResponse = json.decode(response.body);
+        // return List<String>.from(jsonResponse['data']);
+        // print(response.body);
+        // List<String> r = List<String>.from(json.decode(response.body).data);
+        // return r;
+
+        // todo
+        List<dynamic> jsonResponse = json.decode(response.body)['data'];
+        List<String> recommendedProjects = List<String>.from(jsonResponse);
+        print(recommendedProjects.runtimeType);
+        return recommendedProjects;
       } else {
         print('Sign up failed: ${response.statusCode}');
         return List.empty();
@@ -333,10 +341,19 @@ class _SignUp6State extends State<SignUp6> {
                                             BorderRadius.circular(25.0),
                                         side:
                                             BorderSide(color: kPrimaryColor)))),
-                            onPressed: () {
+                            onPressed: () async {
+                              // SignUp6.myList = [
+                              //   "Web3",
+                              //   "BlockChain",
+                              //   "App Development",
+                              //   "Web Development",
+                              //   "Internet of Things"
+                              // ];
                               final String skills =
                                   "${skill1.text},${skill2.text},${skill3.text},${skill4.text},${skill5.text}";
-                              recommendedProjects = getUserInfo3(skills) as List;
+                              recommendedProjects = await
+                                  getUserInfo3(skills);
+                              SignUp6.myList = recommendedProjects;
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     SignUp7(clientside: widget.clientside),
