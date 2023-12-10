@@ -2,7 +2,7 @@ const Users = require("../models/User");
 const { KEY } = require("../getEnv");
 const saltRounds = 10;
 const JWT = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const signup = async (req, resp) => {
   try {
