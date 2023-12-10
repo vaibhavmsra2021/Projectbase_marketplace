@@ -51,24 +51,25 @@ const appliedProject = async (req, res) => {
 };
 
 const getRecomendedProjects = async (req, res) => {
-  try {
-    // const user = await User.findById(req?.user?.id);
-    console.log(req.body.skills);
     try {
-      const qurl = "http://127.0.0.1:5000/get?msg=" + req.body.skills;
+        // const user = await User.findById(req?.user?.id);
+        console.log(req.body.skills);
+        try {
+            const qurl = 'http://127.0.0.1:5000/get?msg=' + req.body.skills;
 
-      console.log(qurl);
-      const pythonApiResponse = await axios.get(qurl);
+            console.log(qurl);
+            const pythonApiResponse = await axios.get(qurl);
 
-      res.json(pythonApiResponse.data);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Internal Server Error");
+            res.json(pythonApiResponse.data);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        }
+
+    } catch (err) {
+        res.status(500).json({ message: (err).message })
     }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+}
 
 const Welcome = (req, res) => {
   res.send("Welcome! You are in the secret  get details route in controllers.");
