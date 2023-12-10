@@ -74,6 +74,7 @@ const signin = async (req, resp) => {
     });
     const User = { ...user.toObject() };
     delete User.password;
+    User.auth = token;
 
     resp.send({ User });
   } catch (error) {
@@ -82,4 +83,19 @@ const signin = async (req, resp) => {
   }
 };
 
-module.exports = { signup, passwordHash, sign_token, signin };
+const update = async (req, resp) => {
+  try {
+    let result = await Users.updateOne(
+      { email: req.body.email },
+      {
+        $set: req.body,
+      }
+    );
+    resp.send(result);
+  } catch (error) {
+    console.error(error);
+    resp.send({ success: false, message: error });
+  }
+};
+
+module.exports = { signup, passwordHash, sign_token, signin, update };
