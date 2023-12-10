@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trumio/constants.dart';
 import 'package:trumio/screen/pages/sign_up/sign_up7.dart';
-
+import 'package:trumio/backend/AuthService.dart'; // Replace with your actual file path
+import '../../../../constants.dart';
+final AuthService _authService = AuthService();
 class SignUp6 extends StatefulWidget {
   const SignUp6({super.key, required this.clientside});
   final bool clientside;
@@ -13,13 +15,15 @@ class SignUp6 extends StatefulWidget {
 
 class _SignUp6State extends State<SignUp6> {
   final collegeName = TextEditingController();
-  var aoiIndex = "-1";
+  var aoiIndex = -1;
   final skill1 = TextEditingController();
   final skill2 = TextEditingController();
   final skill3 = TextEditingController();
   final skill4 = TextEditingController();
   final skill5 = TextEditingController();
-  var degreeIndex = "-1";
+  var degreeIndex = -1;
+  var areaOfInterest=['App Development','Web Development','BlockChain','Internet Of Things'];
+  var degree=['Btech',"Mtech","BSC","BA"];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,15 +83,15 @@ class _SignUp6State extends State<SignUp6> {
                           value: aoiIndex,
                           items: [
                             DropdownMenuItem(
-                                child: Text("Area of Interest"), value: "-1"),
+                                child: Text("Area of Interest"), value: -1),
                             DropdownMenuItem(
-                                child: Text("App Development"), value: "1"),
+                                child: Text("App Development"), value: 1),
                             DropdownMenuItem(
-                                child: Text("Web Development"), value: "2"),
+                                child: Text("Web Development"), value:2),
                             DropdownMenuItem(
-                                child: Text("BlockChain"), value: "3"),
+                                child: Text("BlockChain"), value: 3),
                             DropdownMenuItem(
-                                child: Text("Internet of Things"), value: "4"),
+                                child: Text("Internet of Things"), value: 4),
                           ],
                           onChanged: (v) {},
                         ),
@@ -106,15 +110,15 @@ class _SignUp6State extends State<SignUp6> {
                                     items: [
                                       DropdownMenuItem(
                                           child: Text("Select Degree"),
-                                          value: "-1"),
+                                          value: -1),
                                       DropdownMenuItem(
-                                          child: Text("Btech"), value: "1"),
+                                          child: Text("Btech"), value: 1),
                                       DropdownMenuItem(
-                                          child: Text("Mtech"), value: "2"),
+                                          child: Text("Mtech"), value: 2),
                                       DropdownMenuItem(
-                                          child: Text("BSC"), value: "3"),
+                                          child: Text("BSC"), value: 3),
                                       DropdownMenuItem(
-                                          child: Text("BA"), value: "4"),
+                                          child: Text("BA"), value: 4),
                                     ],
                                     onChanged: (v) {},
                                   ),
@@ -297,10 +301,23 @@ class _SignUp6State extends State<SignUp6> {
                                             BorderRadius.circular(25.0),
                                         side:
                                             BorderSide(color: kPrimaryColor)))),
-                            onPressed: () =>
+                            // onPressed: () =>
+                            //     Navigator.of(context).push(MaterialPageRoute(
+                            //   builder: (BuildContext context) => SignUp7(clientside: widget.clientside),
+                            // )),
+                            onPressed: () async {
+                              try {
+                                // add your method here
+                                 await _authService.getUserInfo3(collegeName.text, degree[degreeIndex],skill1.text, skill2.text, skill3.text, skill4.text, skill5.text);
+                                // Navigate to the next screen or perform any other actions upon successful signup
                                 Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp7(clientside: widget.clientside),
-                            )),
+                                  builder: (BuildContext context) => SignUp7(clientside: widget.clientside),
+                                ));
+                              } catch (error) {
+                                // Handle signup error, e.g., display an error message to the user
+                                print('Signup error: $error');
+                              }
+                            },
                             child: Text(
                               "Save",
                               style: TextStyle(

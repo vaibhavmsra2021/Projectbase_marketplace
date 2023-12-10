@@ -25,43 +25,43 @@ class _projectsDeetsState extends State<projectsDeets> {
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          color: Color.fromARGB(255, 241, 250, 255),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
                 InkWell(
                   onTap: () {
-                                Navigator.pushReplacement(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return projectDeets();
-                                }));
-                              },
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return projectDeets();
+                    }));
+                  },
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.amber,
                         borderRadius: BorderRadius.circular(20)),
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.30,
                     child: Stack(
                       children: [
-                        const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
+                        const Card(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Center(
+                                  child: Text(
+                                "Project1",
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.w600),
+                              )),
+                              SizedBox(height: 15),
+                              Center(
                                 child: Text(
-                              "Project1",
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.w600),
-                            )),
-                            SizedBox(height: 15),
-                            Center(
-                              child: Text(
-                                "Beginner Level",
-                                style: TextStyle(fontSize: 22),
-                              ),
-                            )
-                          ],
+                                  "Beginner Level",
+                                  style: TextStyle(fontSize: 22),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                         StreamBuilder<Object>(
                             stream: null,
@@ -106,29 +106,30 @@ class _projectsDeetsState extends State<projectsDeets> {
                 SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.amber,
                       borderRadius: BorderRadius.circular(20)),
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.30,
                   child: Stack(
                     children: [
-                      const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
+                      const Card(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                                child: Text(
+                              "Project2",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.w600),
+                            )),
+                            SizedBox(height: 15),
+                            Center(
                               child: Text(
-                            "Project2",
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.w600),
-                          )),
-                          SizedBox(height: 15),
-                          Center(
-                            child: Text(
-                              "Intermediate Level",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          )
-                        ],
+                                "Intermediate Level",
+                                style: TextStyle(fontSize: 22),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       StreamBuilder<Object>(
                           stream: null,
@@ -213,29 +214,30 @@ class _projectsDeetsState extends State<projectsDeets> {
                 SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.amber,
                       borderRadius: BorderRadius.circular(20)),
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.30,
                   child: Stack(
                     children: [
-                      const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
+                      const Card(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                                child: Text(
+                              "Project3",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.w600),
+                            )),
+                            SizedBox(height: 15),
+                            Center(
                               child: Text(
-                            "Project3",
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.w600),
-                          )),
-                          SizedBox(height: 15),
-                          Center(
-                            child: Text(
-                              "Advance Level",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          )
-                        ],
+                                "Advance Level",
+                                style: TextStyle(fontSize: 22),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       StreamBuilder<Object>(
                           stream: null,
@@ -320,29 +322,30 @@ class _projectsDeetsState extends State<projectsDeets> {
                 SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.amber,
                       borderRadius: BorderRadius.circular(20)),
                   width: MediaQuery.of(context).size.width * 0.8,
                   height: MediaQuery.of(context).size.height * 0.30,
                   child: Stack(
                     children: [
-                      const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
+                      const Card(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                                child: Text(
+                              "Project4",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.w600),
+                            )),
+                            SizedBox(height: 15),
+                            Center(
                               child: Text(
-                            "Project4",
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.w600),
-                          )),
-                          SizedBox(height: 15),
-                          Center(
-                            child: Text(
-                              "Professional Level",
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          )
-                        ],
+                                "Professional Level",
+                                style: TextStyle(fontSize: 22),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       StreamBuilder<Object>(
                           stream: null,
@@ -364,25 +367,36 @@ class _projectsDeetsState extends State<projectsDeets> {
                                             child: Row(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.only(left: 15.0, right: 10),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 15.0,
+                                                          right: 10),
                                                   child: Container(
                                                     child: Image.asset(
-                                                      "assets/icons/Lock.png",
-                                                      color: Colors.black,
-                                                      scale: 3
-                                                    ),
+                                                        "assets/icons/Lock.png",
+                                                        color: Colors.black,
+                                                        scale: 3),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.symmetric(
-                                                      horizontal: 5.0, vertical: 10),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 5.0,
+                                                      vertical: 10),
                                                   child: Container(
                                                     child: Column(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text("Project Locked!!", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
+                                                        Text(
+                                                          "Project Locked!!",
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ),
                                                         SizedBox(height: 7),
                                                         Text(
                                                             "Complete the previous projects.")

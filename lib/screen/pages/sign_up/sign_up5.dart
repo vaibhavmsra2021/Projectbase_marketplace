@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:trumio/constants.dart';
-import 'package:trumio/screen/pages/sign_up/sign_up4.dart';
 import 'package:trumio/screen/pages/sign_up/sign_up6.dart';
+import 'package:trumio/backend/AuthService.dart'; // Replace with your actual file path
+import '../../../../constants.dart';
+final AuthService _authService = AuthService();
 
 class SignUp5 extends StatefulWidget {
   const SignUp5({super.key, required this.clientside});
@@ -16,9 +18,12 @@ class _SignUp5State extends State<SignUp5> {
   final houseNumber = TextEditingController();
   final ZipCode = TextEditingController();
   
-  var cityIndex = "-1";
-  var stateIndex = "-1";
-  var countryIndex = "-1";
+  var cityIndex = -1;
+  var stateIndex = -1;
+  var countryIndex = -1;
+  var cityarray=['Mumbai','Chennai','Delhi','Bengaluru'];
+  var statearray=['Maharashtra','Tamil Nadu', 'Uttar Pradesh', 'West Bengal'];
+  var countryarray=['India','Egypt','Australia','Argentina'];
 
   @override
   Widget build(BuildContext context) {
@@ -113,15 +118,15 @@ class _SignUp5State extends State<SignUp5> {
                           value: cityIndex,
                           items: [
                             DropdownMenuItem(
-                                child: Text("Select City"), value: "-1"),
+                                child: Text("Select City"), value:-1),
                             DropdownMenuItem(
-                                child: Text("Mumbai"), value: "1"),
+                                child: Text("Mumbai"), value: 0),
                             DropdownMenuItem(
-                                child: Text("Chennai"), value: "2"),
+                                child: Text("Chennai"), value: 1),
                             DropdownMenuItem(
-                                child: Text("Delhi"), value: "3"),
+                                child: Text("Delhi"), value: 2),
                             DropdownMenuItem(
-                                child: Text("Bangluru"), value: "4"),
+                                child: Text("Bangluru"), value: 3),
                           ],
                           onChanged: (v) {},
                         ),
@@ -133,15 +138,15 @@ class _SignUp5State extends State<SignUp5> {
                           value: stateIndex,
                           items: [
                             DropdownMenuItem(
-                                child: Text("Select State"), value: "-1"),
+                                child: Text("Select State"), value: -1),
                             DropdownMenuItem(
-                                child: Text("Maharashtra"), value: "1"),
+                                child: Text("Maharashtra"), value: 0),
                             DropdownMenuItem(
-                                child: Text("Tamil Nadu"), value: "2"),
+                                child: Text("Tamil Nadu"), value: 1),
                             DropdownMenuItem(
-                                child: Text("Uttar Pradesh"), value: "3"),
+                                child: Text("Uttar Pradesh"), value: 2),
                             DropdownMenuItem(
-                                child: Text("West Bengal"), value: "4"),
+                                child: Text("West Bengal"), value: 3),
                           ],
                           onChanged: (v) {},
                         ),
@@ -153,15 +158,15 @@ class _SignUp5State extends State<SignUp5> {
                           value: countryIndex,
                           items: [
                             DropdownMenuItem(
-                                child: Text("Select Country"), value: "-1"),
+                                child: Text("Select Country"), value: -1),
                             DropdownMenuItem(
-                                child: Text("India"), value: "1"),
+                                child: Text("India"), value: 0),
                             DropdownMenuItem(
-                                child: Text("Egypt"), value: "2"),
+                                child: Text("Egypt"), value: 1),
                             DropdownMenuItem(
-                                child: Text("Argentina"), value: "3"),
+                                child: Text("Argentina"), value: 2),
                             DropdownMenuItem(
-                                child: Text("Australia"), value: "4"),
+                                child: Text("Australia"), value: 3),
                           ],
                           onChanged: (v) {},
                         ),
@@ -222,10 +227,23 @@ class _SignUp5State extends State<SignUp5> {
                                     RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25.0),
                                         side: BorderSide(color: kPrimaryColor)))),
-                            onPressed: () =>
+                            // onPressed: () =>
+                            //     Navigator.of(context).push(MaterialPageRoute(
+                            //   builder: (BuildContext context) => SignUp6(clientside: widget.clientside),
+                            // )),
+                            onPressed: () async {
+                              try {
+                                // enter your method here
+                                await _authService.getUserInfo2(streetAddress.text, houseNumber.text, ZipCode.text,cityarray[cityIndex],statearray[stateIndex],countryarray[countryIndex]) ;
+                                // Navigate to the next screen or perform any other actions upon successful signup
                                 Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp6(clientside: widget.clientside),
-                            )),
+                                  builder: (BuildContext context) => SignUp6(clientside: widget.clientside),
+                                ));
+                              } catch (error) {
+                                // Handle signup error, e.g., display an error message to the user
+                                print('Signup error: $error');
+                              }
+                            },
                             child: Text(
                               "Save",
                               style: TextStyle(

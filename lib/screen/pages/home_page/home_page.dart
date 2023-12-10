@@ -1,112 +1,110 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget{
-  @override
-  DashboardPage createState() => DashboardPage();
-}
-// class homePage extends State<MyHomePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: DashboardPage(),
-//     );
-//   }
-// }
+class DashBoardPage extends StatefulWidget {
+  const DashBoardPage({super.key});
 
-class DashboardPage extends State<MyHomePage> {
+  @override
+  State<DashBoardPage> createState() => _DashBoardPageState();
+}
+
+class _DashBoardPageState extends State<DashBoardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Dashboard", style:TextStyle(color: Colors.black, fontSize: 17)),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              // Implement create club functionality
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.people),
-            onPressed: () {
-              // Implement create team functionality
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.group_add),
-            onPressed: () {
-              // Implement join team functionality
-            },
-          ),
-        ],
-      ),
       body: ListView(
         padding: const EdgeInsets.all(10.0),
-          children: [
-            Card(
-              child: Column(
-                children: [
-                  GridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    children: [
-                      buildEarningsTile('Total (Month)', '\$5000'),
-                      buildEarningsTile('Completed (Month)', '\$3000'),
-                      buildEarningsTile('Total (Year)', '\$25000'),
-                      buildEarningsTile('Completed (Year)', '\$18000'),
-                    ],
-                  ),
-                ],
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: Text("Dashboard",
+                    style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600)),
               ),
+              Expanded(child: SizedBox()),
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  // Implement create club functionality
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.people),
+                onPressed: () {
+                  // Implement create team functionality
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.group_add),
+                onPressed: () {
+                  // Implement join team functionality
+                },
+              ),
+            ],
+          ),
+          Card(
+            child: Column(
+              children: [
+                GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 2,
+                  children: [
+                    buildEarningsTile('Total (Month)', '\₹5000'),
+                    buildEarningsTile('Completed (Month)', '\₹3000'),
+                    buildEarningsTile('Total (Year)', '\₹25000'),
+                    buildEarningsTile('Completed (Year)', '\₹18000'),
+                  ],
+                ),
+              ],
             ),
-            SizedBox(height: 10.0),
-            ExpandableCard(
-              title: 'Rewards',
-              content: Column(
-                children: [
-                  GridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 1,
-                    children: [
-                      buildRewardTile('Reward 1', '\$100'),
-                      buildRewardTile('Reward 2', '\$50'),
-                    ],
-                  ),
-                  SizedBox(height: 16.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleAvatar(
+          ),
+          SizedBox(height: 10.0),
+          ExpandableCard(
+            title: 'Rewards',
+            content: Column(
+              children: [
+                GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 1,
+                  children: [
+                    buildRewardTile('Reward 1', '\₹100'),
+                    buildRewardTile('Reward 2', '\₹50'),
+                  ],
+                ),
+                SizedBox(height: 16.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircleAvatar(
                         // Profile icon
                         // Add your profile icon logic here
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Earnings'),
-                          Text('\$5000'),
-                        ],
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Implement earn more functionality
-                        },
-                        child: Text('Earn More'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Earnings'),
+                        Text('\₹5000'),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Implement earn more functionality
+                      },
+                      child: Text('Earn More'),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            SizedBox(height: 10.0),
-            ExpandableCard(title: 'Projects', content: buildProjectsContent()),
-            SizedBox(height: 10.0),
-            ExpandableCard(title: 'Teams', content: buildTeamsContent()),
-            SizedBox(height: 10.0),
-            AvailabilityCard(),
-          ],
-        ),
-
+          ),
+          SizedBox(height: 10.0),
+          ExpandableCard(title: 'Projects', content: buildProjectsContent()),
+          SizedBox(height: 10.0),
+          ExpandableCard(title: 'Teams', content: buildTeamsContent()),
+          SizedBox(height: 10.0),
+          AvailabilityCard(),
+        ],
+      ),
     );
   }
 
@@ -149,28 +147,28 @@ class DashboardPage extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Reward 1'),
-            Text('\$100'),
+            Text('\₹100'),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Reward 2'),
-            Text('\$50'),
+            Text('\₹50'),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CircleAvatar(
-              // Profile icon
-              // Add your profile icon logic here
-            ),
+                // Profile icon
+                // Add your profile icon logic here
+                ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Earnings'),
-                Text('\$5000'),
+                Text('\₹5000'),
               ],
             ),
             ElevatedButton(
@@ -189,10 +187,14 @@ class DashboardPage extends State<MyHomePage> {
     // Build the content for the "Projects" card
     return Column(
       children: [
-        ExpandableList(title: 'Active Projects', items: ['Project 1', 'Project 2']),
-        ExpandableList(title: 'Upcoming Projects', items: ['Project 3', 'Project 4']),
-        ExpandableList(title: 'Recommended Projects', items: ['Project 5', 'Project 6']),
-        ExpandableList(title: 'Upcoming Payments', items: ['Payment 1', 'Payment 2']),
+        ExpandableList(
+            title: 'Active Projects', items: ['Project 1', 'Project 2']),
+        ExpandableList(
+            title: 'Upcoming Projects', items: ['Project 3', 'Project 4']),
+        ExpandableList(
+            title: 'Recommended Projects', items: ['Project 5', 'Project 6']),
+        ExpandableList(
+            title: 'Upcoming Payments', items: ['Payment 1', 'Payment 2']),
       ],
     );
   }

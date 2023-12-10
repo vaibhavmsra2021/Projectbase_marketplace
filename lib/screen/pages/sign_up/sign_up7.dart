@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:trumio/constants.dart';
 import 'package:trumio/screen/pages/home.dart';
+import 'package:trumio/backend/AuthService.dart'; // Replace with your actual file path
+import '../../../../constants.dart';
+final AuthService _authService = AuthService();
 
 class SignUp7 extends StatefulWidget {
   const SignUp7({super.key, required this.clientside});
@@ -33,8 +36,8 @@ class _SignUp7State extends State<SignUp7> {
                   SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) => MobileScreen()));
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                          builder: (BuildContext context) => MobileScreen()), (route) => false);
                     },
                     child: Text('Get Started', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),),
                   ),
@@ -223,9 +226,20 @@ class _SignUp7State extends State<SignUp7> {
                             //     Navigator.of(context).push(MaterialPageRoute(
                             //   builder: (BuildContext context) => MobileScreen(),
                             // )),
-                            onPressed: () {
-                              _showCustomDialog(context);
-                            },
+                            //onPressed: () {
+                              // _showCustomDialog(context);
+                              onPressed: () async {
+
+                                try {
+                                  // add your backend code here
+                                  _showCustomDialog(context);
+                                  await _authService.getUserInfo4(linkedInLink.text, twitterLink.text,githubLink.text);
+                                } catch (error) {
+                                  // Handle signup error, e.g., display an error message to the user
+                                  print('Signup error: $error');
+                                }
+                              },
+
                             child: Text(
                               "Save",
                               style: TextStyle(

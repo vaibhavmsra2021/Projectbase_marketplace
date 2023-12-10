@@ -16,13 +16,14 @@ class ProjectState extends State<Projects>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Projects", style:TextStyle(color: Colors.black, fontSize: 18)),
-
-      ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
+          Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                child: Text("Projects",
+                    style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600)),
+              ),
           Expanded(
             child: ListView(
               children: [

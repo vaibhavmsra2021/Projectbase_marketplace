@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:trumio/screen/pages/sign_in/sign_in.dart';
 import 'package:trumio/screen/pages/sign_up/sign_up3.dart';
-import 'package:trumio/size_config.dart';
-
+import 'package:trumio/backend/AuthService.dart'; // Replace with your actual file path
 import '../../../../constants.dart';
+final AuthService _authService = AuthService();
+
+
 
 class SignUp2 extends StatefulWidget {
   const SignUp2({super.key, required this.clientside});
@@ -192,10 +193,17 @@ class _SignUp2State extends State<SignUp2> {
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: ElevatedButton(
-                          onPressed: () =>
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp3(clientside: widget.clientside),
-                            )),
+                          onPressed: () async {
+                            try{
+                                await _authService.signUp(emailController.text, passwordController.text);
+                                Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => SignUp3(clientside: widget.clientside),
+                                ));
+                            }
+                            catch(error){
+                              print('Sign up error: $error');
+                            }
+                           },
                           style: ElevatedButton.styleFrom(
                             fixedSize: Size(double.maxFinite, 62),
                             textStyle: TextStyle(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:trumio/constants.dart';
 import 'package:trumio/screen/pages/sign_in/sign_in.dart';
 import 'package:trumio/screen/pages/sign_up/sign_up2.dart';
-import 'package:trumio/size_config.dart';
+import 'package:trumio/backend/AuthService.dart'; // Replace with your actual file path
+
+final AuthService _authService = AuthService();
 
 class SignUp extends StatefulWidget {
   @override
@@ -55,8 +55,10 @@ class _SignUpState extends State<SignUp> {
                         ),
                         onPressed: () =>
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp2(clientside: false),
+                              builder: (BuildContext context) => SignUp2(clientside: true),
                             )),
+
+
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           child: Column(

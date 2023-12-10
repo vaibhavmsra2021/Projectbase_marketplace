@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.0.9
   responsive_builder: ^0.7.0
   font_awesome_flutter: ^10.6.0
+  http:
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:trumio/screen/pages/sign_up/sign_up3.dart';
 import 'package:trumio/size_config.dart';
 
 import '../../../../constants.dart';
@@ -10,6 +8,7 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          backgroundColor: Color.fromARGB(255, 241, 250, 255),
           body: SizedBox(
             width: double.infinity,
 
@@ -18,13 +17,8 @@ class ForgetPassword extends StatelessWidget {
               children: [
                 SizedBox(height: 20,),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: SvgPicture.asset(
-                    "assets/Logo.svg",
-                    width: 40,
-                    height: 40,
-                  ),
+                Container(
+                  child: Image(image: AssetImage("assets/trumioLogo.png")),
                 ),
 
                 SizedBox(height: 50,),
@@ -68,10 +62,59 @@ class ForgetPassword extends StatelessWidget {
                                   )
                               )
                           ),
-                          onPressed: () =>
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => SignUp3(clientside: false),
-                              )),
+                          onPressed: () {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                          backgroundColor: Colors.transparent,
+                                          behavior: SnackBarBehavior.floating,
+                                          elevation: 0,
+                                          content: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.green,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20))),
+                                            height: 75,
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 15.0,
+                                                          right: 10),
+                                                  child: Container(
+                                                    child: Icon(Icons.check_circle_outline_rounded, size: 40)
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 5.0,
+                                                      vertical: 10),
+                                                  child: Container(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          "Verification code sent!!",
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ),
+                                                        SizedBox(height: 7),
+                                                        Text(
+                                                            "Check E-mail or SMS")
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )));
+                                },
                           child: Text(
                             "Reset password",
                             style: TextStyle(

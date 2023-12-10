@@ -5,7 +5,9 @@ import 'package:trumio/screen/pages/forget_password/forget_password.dart';
 import 'package:trumio/screen/pages/home.dart';
 import 'package:trumio/screen/pages/sign_up/sign_up1.dart';
 import 'package:trumio/size_config.dart';
-
+import 'package:trumio/backend/AuthService.dart'; // Replace with your actual file path
+import '../../../../constants.dart';
+final AuthService _authService = AuthService();
 class SignIn extends StatefulWidget {
   @override
   _SignInState createState() => _SignInState();
@@ -13,6 +15,9 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   bool remember = false;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,6 +50,7 @@ class _SignInState extends State<SignIn> {
                     height: 30,
                   ),
                   TextFormField(
+                    controller:emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(hintText: "Email"),
                   ),
@@ -52,6 +58,7 @@ class _SignInState extends State<SignIn> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     decoration: InputDecoration(hintText: "Password"),
@@ -119,10 +126,22 @@ class _SignInState extends State<SignIn> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25.0),
                                       side: BorderSide(color: kPrimaryColor)))),
-                      onPressed: () =>
+                      // onPressed: () =>
+                      //     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                      //   builder: (BuildContext context) => MobileScreen(),
+                      // ), (route) => false),
+                      onPressed: () async {
+                        try {
+                          await _authService.signIn(emailController.text, passwordController.text);
+                          // Navigate to the next screen or perform any other actions upon successful signup
                           Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => MobileScreen(),
-                      )),
+                            builder: (BuildContext context) => MobileScreen(),
+                          ));
+                        } catch (error) {
+                          // Handle signup error, e.g., display an error message to the user
+                          print('Sign IN error: $error');
+                        }
+                      },
                       child: Text(
                         "Continue",
                         style: TextStyle(

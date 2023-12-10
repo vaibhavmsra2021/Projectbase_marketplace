@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:trumio/screen/pages/home.dart';
 import 'package:trumio/screen/pages/sign_up/sign_up4.dart';
 import 'package:trumio/size_config.dart';
 import '../../../../constants.dart';
+import 'package:trumio/backend/AuthService.dart'; // Replace with your actual file path
+import '../../../../constants.dart';
+final AuthService _authService = AuthService();
 
 class SignUp3 extends StatefulWidget {
   const SignUp3({super.key, required this.clientside});
@@ -125,10 +126,23 @@ class _SignUp3State extends State<SignUp3> {
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25.0),
                                       side: BorderSide(color: kPrimaryColor)))),
-                      onPressed: () =>
+                      // onPressed: () =>
+                      //     Navigator.of(context).push(MaterialPageRoute(
+                      //   builder: (BuildContext context) => SignUp4(clientside: widget.clientside),
+                      // )),
+                      onPressed: () async {
+                        try {
+                          //change the below method to new method created for storing first name, last name and mobile no
+                           await _authService.getUserInfo(firstNameConstroller.text, lastNameController.text, mobileNumberController.text);
+                          // Navigate to the next screen or perform any other actions upon successful signup
                           Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => SignUp4(clientside: widget.clientside),
-                      )),
+                            builder: (BuildContext context) => SignUp4(clientside: widget.clientside),
+                          ));
+                        } catch (error) {
+                          // Handle signup error, e.g., display an error message to the user
+                          print('Signup error: $error');
+                        }
+                      },
                       child: Text(
                         "Save and Continue",
                         style: TextStyle(

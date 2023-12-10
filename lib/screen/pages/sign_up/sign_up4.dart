@@ -1,9 +1,10 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:trumio/constants.dart';
-
-import 'sign_up3.dart';
 import 'sign_up5.dart';
+import 'package:trumio/backend/AuthService.dart'; // Replace with your actual file path
+import '../../../../constants.dart';
+final AuthService _authService = AuthService();
 
 class SignUp4 extends StatefulWidget {
   const SignUp4({super.key, required this.clientside});
@@ -15,9 +16,9 @@ class SignUp4 extends StatefulWidget {
 }
 
 class _SignUp4State extends State<SignUp4> {
-  var _value = "-1";
+  var _value = -1;
   var resume;
-  var industryIndex = "-1";
+  var industryIndex = -1;
   final professionalIntro = TextEditingController();
   final organizationName = TextEditingController();
   final organizationTitle = TextEditingController();
@@ -27,7 +28,7 @@ class _SignUp4State extends State<SignUp4> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 241, 250, 255),
+          backgroundColor: Color.fromARGB(255, 241, 250, 255),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -35,7 +36,7 @@ class _SignUp4State extends State<SignUp4> {
                   height: 20,
                 ),
                 Container(
-                  child: const Image(image: AssetImage("assets/trumioLogo.png")),
+                  child: Image(image: AssetImage("assets/trumioLogo.png")),
                 ),
                 SizedBox(
                   height: 30,
@@ -107,19 +108,19 @@ class _SignUp4State extends State<SignUp4> {
                                       items: [
                                         DropdownMenuItem(
                                             child: Text("Select Industry"),
-                                            value: "-1"),
+                                            value: -1),
                                         DropdownMenuItem(
                                             child: Text("Software"),
-                                            value: "1"),
+                                            value: 1),
                                         DropdownMenuItem(
-                                            child: Text("Businness"),
-                                            value: "2"),
+                                            child: Text("Business"),
+                                            value: 2),
                                         DropdownMenuItem(
                                             child: Text("Construction"),
-                                            value: "3"),
+                                            value: 3),
                                         DropdownMenuItem(
                                             child: Text("Transportation"),
-                                            value: "4"),
+                                            value: 4),
                                       ],
                                       onChanged: (v) {},
                                     ),
@@ -181,7 +182,7 @@ class _SignUp4State extends State<SignUp4> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10),
                                     child: Text(
-                                      "Professional Intoduction",
+                                      "Professional Introduction",
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 21),
                                     ),
@@ -210,7 +211,7 @@ class _SignUp4State extends State<SignUp4> {
                                   ),
                                   SizedBox(height: 15),
                                   ElevatedButton(
-                                    child: Text("Uplaod your Resume"),
+                                    child: Text("Upload your Resume"),
                                     onPressed: () async {
                                       final file =
                                           await FilePicker.platform.pickFiles();
@@ -289,10 +290,22 @@ class _SignUp4State extends State<SignUp4> {
                                             BorderRadius.circular(25.0),
                                         side:
                                             BorderSide(color: kPrimaryColor)))),
-                            onPressed: () =>
+                            // onPressed: () =>
+                            //     Navigator.of(context).push(MaterialPageRoute(
+                            //   builder: (BuildContext context) => SignUp5(clientside: widget.clientside),
+                            // )),
+                            onPressed: () async {
+                              try {
+                                 await _authService.getUserInfo1(professionalIntro.text,organizationName.text,organizationTitle.text,numberofEmployees.text); // enter your fields here
+                                // Navigate to the next screen or perform any other actions upon successful signup
                                 Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp5(clientside: widget.clientside),
-                            )),
+                                  builder: (BuildContext context) => SignUp5(clientside: widget.clientside),
+                                ));
+                              } catch (error) {
+                                // Handle signup error, e.g., display an error message to the user
+                                print('Signup error: $error');
+                              }
+                            },
                             child: Text(
                               "Save",
                               style: TextStyle(
