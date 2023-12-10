@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trumio_v1/constants.dart';
@@ -12,6 +14,8 @@ class SignUp6 extends StatefulWidget {
   State<SignUp6> createState() => _SignUp6State();
 }
 
+late List recommendedProjects = [];
+
 class _SignUp6State extends State<SignUp6> {
   final collegeName = TextEditingController();
   var aoiIndex = "-1";
@@ -22,31 +26,27 @@ class _SignUp6State extends State<SignUp6> {
   final skill5 = TextEditingController();
   var degreeIndex = "-1";
 
-  Future<void> getUserInfo3(String skill1, String skill2, String skill3, String skill4, String skill5) async {
-    try{
-      final response= await http.post(
-        Uri.parse("https://j6vnt4x0-7000.inc1.devtunnels.ms/"),
-        body:{
-          'skill1':"Html",
-          'skill2':"Python",
-          'skill3':"Css",
-          'skill4':"Javascript",
-          'skill5':"Machine Learning"
+  Future<List> getUserInfo3(String skills) async {
+    try {
+      final response = await http.post(
+        Uri.parse("http://localhost:7000/RecomendedProjects"),
+        body: {
+          "skills": "Html,Css,Javasript,React,Redux"
         },
       );
-      if(response.statusCode==200){
-        
-      print('Sign up successful from this page');
-      } 
-      else{
+      if (response.statusCode == 200) {
+        print('Sign up successful from this page');
+        Map<String, dynamic> jsonResponse = json.decode(response.body);
+        return List<String>.from(jsonResponse['data']);
+      } else {
         print('Sign up failed: ${response.statusCode}');
+        return List.empty();
       }
-    }
-    catch (error) {
+    } catch (error) {
       print('Error during sign up: $error');
+      return List.empty();
       // Handle error, e.g., show error message to the user
     }
-
   }
 
   @override
@@ -334,7 +334,9 @@ class _SignUp6State extends State<SignUp6> {
                                         side:
                                             BorderSide(color: kPrimaryColor)))),
                             onPressed: () {
-                              getUserInfo3(skill1.text, skill2.text, skill3.text, skill4.text, skill5.text);
+                              final String skills =
+                                  "${skill1.text},${skill2.text},${skill3.text},${skill4.text},${skill5.text}";
+                              recommendedProjects = getUserInfo3(skills) as List;
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     SignUp7(clientside: widget.clientside),
