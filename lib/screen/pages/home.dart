@@ -35,6 +35,7 @@ class _MobileScreenState extends State<MobileScreen> {
       if (searchHistory.length > 10) {
         searchHistory.removeLast();
       }
+      _searchController.clear();
       print('Search History: ${searchHistory.toList()}');
       setState(() {});
     }
