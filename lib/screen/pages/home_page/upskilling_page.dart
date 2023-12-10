@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trumio_v1/screen/pages/home_page/project_details.dart';
+import 'package:http/http.dart' as http;
 
 class Upskilling extends StatefulWidget {
   const Upskilling({super.key});
@@ -9,6 +10,27 @@ class Upskilling extends StatefulWidget {
 }
 
 class _UpskillingState extends State<Upskilling> {
+
+  Future<void> getUserInfo3(String universityName, String degree, String skill1, String skill2, String skill3, String skill4, String skill5) async {
+    try{
+      final response= await http.get(
+        Uri.parse("https://j6vnt4x0-7000.inc1.devtunnels.ms/RecomendedProjects"),
+      );
+      if(response.statusCode==200){
+        
+      print('Sign up successful from this page');
+      } 
+      else{
+        print('Sign up failed: ${response.statusCode}');
+      }
+    }
+    catch (error) {
+      print('Error during sign up: $error');
+      // Handle error, e.g., show error message to the user
+    }
+
+  }
+
   var domainNames = [
     "Web3",
     "BlockChain",

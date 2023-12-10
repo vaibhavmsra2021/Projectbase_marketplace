@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trumio_v1/constants.dart';
 import 'package:trumio_v1/screen/pages/sign_up/sign_up7.dart';
+import 'package:http/http.dart' as http;
 
 class SignUp6 extends StatefulWidget {
   const SignUp6({super.key, required this.clientside});
@@ -20,6 +21,34 @@ class _SignUp6State extends State<SignUp6> {
   final skill4 = TextEditingController();
   final skill5 = TextEditingController();
   var degreeIndex = "-1";
+
+  Future<void> getUserInfo3(String skill1, String skill2, String skill3, String skill4, String skill5) async {
+    try{
+      final response= await http.post(
+        Uri.parse("https://j6vnt4x0-7000.inc1.devtunnels.ms/"),
+        body:{
+          'skill1':"Html",
+          'skill2':"Python",
+          'skill3':"Css",
+          'skill4':"Javascript",
+          'skill5':"Machine Learning"
+        },
+      );
+      if(response.statusCode==200){
+        
+      print('Sign up successful from this page');
+      } 
+      else{
+        print('Sign up failed: ${response.statusCode}');
+      }
+    }
+    catch (error) {
+      print('Error during sign up: $error');
+      // Handle error, e.g., show error message to the user
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -74,25 +103,31 @@ class _SignUp6State extends State<SignUp6> {
                             return Column(
                               children: [
                                 Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: DropdownButtonFormField(
-                          value: aoiIndex,
-                          items: [
-                            DropdownMenuItem(
-                                child: Text("Area of Interest"), value: "-1"),
-                            DropdownMenuItem(
-                                child: Text("App Development"), value: "1"),
-                            DropdownMenuItem(
-                                child: Text("Web Development"), value: "2"),
-                            DropdownMenuItem(
-                                child: Text("BlockChain"), value: "3"),
-                            DropdownMenuItem(
-                                child: Text("Internet of Things"), value: "4"),
-                          ],
-                          onChanged: (v) {},
-                        ),
-                      ),
-                      SizedBox(height: 50),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: DropdownButtonFormField(
+                                    value: aoiIndex,
+                                    items: [
+                                      DropdownMenuItem(
+                                          child: Text("Area of Interest"),
+                                          value: "-1"),
+                                      DropdownMenuItem(
+                                          child: Text("App Development"),
+                                          value: "1"),
+                                      DropdownMenuItem(
+                                          child: Text("Web Development"),
+                                          value: "2"),
+                                      DropdownMenuItem(
+                                          child: Text("BlockChain"),
+                                          value: "3"),
+                                      DropdownMenuItem(
+                                          child: Text("Internet of Things"),
+                                          value: "4"),
+                                    ],
+                                    onChanged: (v) {},
+                                  ),
+                                ),
+                                SizedBox(height: 50),
                               ],
                             );
                           } else {
@@ -274,7 +309,8 @@ class _SignUp6State extends State<SignUp6> {
                                             BorderSide(color: kPrimaryColor)))),
                             onPressed: () =>
                                 Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp7(clientside: widget.clientside),
+                              builder: (BuildContext context) =>
+                                  SignUp7(clientside: widget.clientside),
                             )),
                             child: Text(
                               "Skip",
@@ -297,10 +333,13 @@ class _SignUp6State extends State<SignUp6> {
                                             BorderRadius.circular(25.0),
                                         side:
                                             BorderSide(color: kPrimaryColor)))),
-                            onPressed: () =>
-                                Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp7(clientside: widget.clientside),
-                            )),
+                            onPressed: () {
+                              getUserInfo3(skill1.text, skill2.text, skill3.text, skill4.text, skill5.text);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    SignUp7(clientside: widget.clientside),
+                              ));
+                            },
                             child: Text(
                               "Save",
                               style: TextStyle(
